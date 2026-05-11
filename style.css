@@ -45,4 +45,20 @@ body {
 .beer-item { font-size: 0.85rem; padding: 4px 0; border-bottom: 1px solid #dee2e6; }
 .beer-item:last-child { border: none; }
 
-.end-clubhouse { text-align: center; padding: 40px; color: var(--slate-gray); font-style: italic; }
+.end-clubhouse { text-align: center; padding: 40px; color: var(--slate-gray); font-style: italic;
+/* Value Meter Style */
+.value-meter {
+    background: #e0e0e0;
+    height: 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.value-meter .fill {
+    background: var(--pacific-blue);
+    height: 100%;
+    transition: width 0.8s ease-in-out;
+}
+
+
+}
