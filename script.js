@@ -86,3 +86,4 @@ const ui = {
 };
 
 document.addEventListener('DOMContentLoaded', () => ui.init());
+
