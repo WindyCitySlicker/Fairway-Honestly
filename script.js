@@ -3,33 +3,17 @@ const ui = {
         current: 'home',
         data: {
             reviews: [
-                { name: "Torrey Pines", price: 220, value: 140, sg: "+2.4", speed: "11.5", staff: "🙂" },
-                { name: "Riverton Pointe", price: 110, value: 95, sg: "-1.1", speed: "10.0", staff: "😁" }
+                { name: "Torrey Pines (North)", price: 220, value: 200, sg: "+1.2", location: "La Jolla, CA", img: "[attachment_2](attachment)" },
+                { name: "Cog Hill (Dubsdread)", price: 155, value: 160, sg: "+3.8", location: "Lemont, IL", img: "[attachment_0](attachment)" },
+                { name: "Harbour Town", price: 450, value: 380, sg: "+2.1", location: "Hilton Head, SC", img: "[attachment_3](attachment)" },
+                { name: "Riverton Pointe", price: 110, value: 105, sg: "-0.5", location: "Hardeeville, SC", img: "images/image.jpeg" },
+                { name: "Bethpage Black", price: 150, value: 300, sg: "+5.2", location: "Farmingdale, NY", img: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=800" }
             ],
-            witb: [
-                { cat: "Woods", model: "Stealth 2 Plus", detail: "9.0° Graphite Design" },
-                { cat: "Flatstick", model: "L.A.B. Mezz.1", detail: "The Cheat Code" }
-            ],
-            beers: ["Founders All Day IPA", "Kona Big Wave", "Sierra Nevada Pale Ale", "Michelob Ultra", "Coors Banquet"]
-        }
-    },
-
-    navigate: function(view) {
-        this.state.current = view;
-        const content = document.getElementById('dynamic-content');
-        const home = document.getElementById('home-view');
-        
-        // Navigation visual update
-        document.querySelectorAll('.dock-item').forEach(btn => {
-            btn.classList.toggle('active', btn.innerText.toLowerCase().includes(view));
-        });
-
-        if(view === 'home') {
-            home.style.display = 'block';
-            content.innerHTML = '';
-        } else {
-            home.style.display = 'none';
-            this.render(view, content);
+            drinks: [
+                { name: "The Transfusion", img: "[attachment_1](attachment)", desc: "The undisputed king. Vodka, ginger ale, and a heavy splash of grape juice." },
+                { name: "John Daly", img: "[attachment_4](attachment)", desc: "An Arnold Palmer with a kick. Spiked iced tea and lemonade for those hot back-nines." },
+                { name: "Bloody Mary", img: "[attachment_5](attachment)", desc: "The early tee-time savior. Spicy, salty, and topped with a full salad." }
+            ]
         }
     },
 
@@ -40,28 +24,28 @@ const ui = {
                 const valPercent = (c.value / c.price) * 100;
                 container.innerHTML += `
                     <div class="course-card">
-                        <span class="kicker">COURSE REVIEW</span>
+                        <div class="map-container">
+                            <img src="${c.img}" style="width:100%; height:100%; object-fit:cover; opacity:0.6;">
+                            <div class="map-dot"></div>
+                        </div>
+                        <span class="kicker">${c.location}</span>
                         <h2>${c.name}</h2>
-                        <p>Strokes Gained Difficulty: <strong>${c.sg}</strong></p>
-                        <div class="value-meter-bg"><div class="value-meter-fill" style="width:${valPercent}%"></div></div>
-                        <p style="font-size:0.8rem">Actual Cost: $${c.price} | <span style="color:var(--primary)">Honest Value: $${c.value}</span></p>
+                        <div class="value-meter-bg"><div class="value-meter-fill" style="width:${Math.min(valPercent, 100)}%"></div></div>
+                        <p style="font-size:0.85rem">Difficulty: <strong>${c.sg}</strong> | Value: $${c.value}</p>
                     </div>`;
             });
         } else if(view === '19th') {
-            container.innerHTML = `<div class="course-card"><h2>The Fairway & Flask</h2><p>Top Clubhouse Picks:</p>` + 
-                this.state.data.beers.map(b => `<div class="beer-badge" style="background:#f0f4f8; padding:10px; margin-top:5px; border-radius:10px; font-weight:600;">${b}</div>`).join('') + `</div>`;
-        } else if(view === 'witb') {
-            this.state.data.witb.forEach(item => {
-                container.innerHTML += `<div class="course-card"><span class="kicker">${item.cat}</span><h3>${item.model}</h3><p>${item.detail}</p></div>`;
+            this.state.data.drinks.forEach(d => {
+                container.innerHTML += `
+                    <div class="drink-card">
+                        <img src="${d.img}" class="drink-img">
+                        <div class="drink-details">
+                            <h3>${d.name}</h3>
+                            <p style="font-size:0.85rem; color:var(--text);">${d.desc}</p>
+                        </div>
+                    </div>`;
             });
         }
     },
-
-    init: function() {
-        document.getElementById('quote-text').innerText = "The more I practice, the luckier I get.";
-        document.getElementById('history-text').innerText = "May 11, 1911: Walter Hagen makes his professional debut.";
-        document.getElementById('history-link').href = "https://www.worldgolfhalloffame.org/walter-hagen";
-    }
+    // ... rest of navigate and init functions from previous turn
 };
-
-document.addEventListener('DOMContentLoaded', () => ui.init());
