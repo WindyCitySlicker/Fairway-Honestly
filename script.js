@@ -1,114 +1,71 @@
-/**
- * HONEST YARDAGE | MASTER ARCHITECT SCRIPT v2.1
- * Optimized for Mobile Performance & Stability
- */
-
 const ui = {
-    // 1. DATA DATABASE
     data: {
-        reviews: [
-            { name: "Torrey Pines (North)", price: 220, value: 200, sg: "+1.2", loc: "La Jolla, CA", img: "https://images.unsplash.com/photo-1596404313271-9df6084e8574?q=80&w=800" },
-            { name: "Cog Hill (Dubsdread)", price: 155, value: 160, sg: "+3.8", loc: "Lemont, IL", img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=800" },
-            { name: "Harbour Town", price: 450, value: 380, sg: "+2.1", loc: "Hilton Head, SC", img: "https://images.unsplash.com/photo-1623190289197-3914e7a82ec6?q=80&w=800" },
-            { name: "Riverton Pointe", price: 110, value: 105, sg: "-0.5", loc: "Hardeeville, SC", img: "images/image.jpeg" },
-            { name: "Bethpage Black", price: 150, value: 300, sg: "+5.2", loc: "Farmingdale, NY", img: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=800" }
+        played: [
+            { name: "Torrey Pines", val: 200, cost: 220, loc: "La Jolla, CA" },
+            { name: "Bethpage Black", val: 300, cost: 150, loc: "Farmingdale, NY" },
+            { name: "Cog Hill", val: 160, cost: 155, loc: "Lemont, IL" },
+            { name: "Harbour Town", val: 380, cost: 450, loc: "Hilton Head, SC" },
+            { name: "Riverton Pointe", val: 105, cost: 110, loc: "Hardeeville, SC" }
         ],
         drinks: [
-            { name: "The Transfusion", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=800", desc: "Vodka, Ginger Ale, Grape Juice. The only juice that matters on the back nine." },
-            { name: "John Daly", img: "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?q=80&w=800", desc: "Spiked Iced Tea & Lemonade. Simple, lethal, and refreshes better than a birdie." },
-            { name: "Bloody Mary", img: "https://images.unsplash.com/photo-1541546339599-ecdb5ec540bc?q=80&w=800", desc: "The breakfast of champions. Spicy enough to wake up your short game." }
+            { name: "Transfusion", desc: "The Club Classic. Vodka, Ginger Ale, Grape Juice." },
+            { name: "Spiked Arnold Palmer", desc: "Tea, Lemonade, and a Birdie-juice kicker." }
         ],
-        witb: [
-            { club: "Driver", model: "Stealth 2 Plus", spec: "9.0° Graphite Design" },
-            { club: "Irons", model: "P790 4-PW", spec: "Dynamic Gold 105" },
-            { club: "Putter", model: "L.A.B. Mezz.1", spec: "35 inch / 69° Lie" }
+        witb: [{ club: "Putter", model: "L.A.B. Mezz.1", note: "Cheat code." }],
+        bests: [
+            { feat: "Longest Drive", stat: "312 Yards", loc: "Riverton Pointe #14" },
+            { feat: "Lowest Round", stat: "78", loc: "Cog Hill" }
         ]
     },
 
-    // 2. NAVIGATION ENGINE
-    navigate: function(view) {
-        const dynamicContent = document.getElementById('dynamic-content');
-        const homeView = document.getElementById('home-view');
+    navigate: function(target) {
+        const home = document.getElementById('home-view');
+        const dynamic = document.getElementById('dynamic-view');
         
-        if (!dynamicContent || !homeView) return;
-
-        // Visual Active State for Buttons
-        document.querySelectorAll('.dock-item').forEach(btn => {
-            btn.classList.toggle('active', btn.innerText.toLowerCase().includes(view));
+        // Toggle Active Buttons
+        document.querySelectorAll('.dock-btn').forEach(b => {
+            b.classList.toggle('active', b.innerText.toLowerCase().includes(target));
         });
 
-        if (view === 'home') {
-            homeView.style.display = 'block';
-            dynamicContent.innerHTML = '';
-            window.scrollTo(0, 0);
+        if (target === 'home') {
+            home.style.display = 'block';
+            dynamic.innerHTML = '';
         } else {
-            homeView.style.display = 'none';
-            this.render(view, dynamicContent);
-            window.scrollTo(0, 0);
+            home.style.display = 'none';
+            this.render(target, dynamic);
         }
+        window.scrollTo(0,0);
     },
 
-    // 3. MASTER RENDERER
-    render: function(view, container) {
-        container.innerHTML = '';
+    render: function(target, container) {
+        container.innerHTML = `<h2 style="margin:20px; font-family:'Playfair Display'">${target.toUpperCase()}</h2>`;
         
-        if (view === 'reviews') {
-            this.data.reviews.forEach(c => {
-                const valPct = Math.min((c.value / c.price) * 100, 100);
-                container.innerHTML += `
-                    <div class="course-card">
-                        <div class="map-container" style="background: url('${c.img}') center/cover;">
-                            <div class="map-dot"></div>
-                        </div>
-                        <span class="kicker">${c.loc}</span>
-                        <h2>${c.name}</h2>
-                        <div class="value-meter-bg"><div class="value-meter-fill" style="width:${valPct}%"></div></div>
-                        <p style="font-size:0.8rem">Diff: <strong>${c.sg}</strong> | Value: $${c.value}</p>
-                    </div>`;
+        if (target === 'played') {
+            this.data.played.forEach(c => {
+                container.innerHTML += `<div class="card"><h3>${c.name}</h3><p>${c.loc}</p><p>Value: $${c.val} | Cost: $${c.cost}</p></div>`;
             });
-        } 
-        
-        else if (view === '19th') {
+        } else if (target === 'map') {
+            container.innerHTML += `<div class="card" style="height:300px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">[Interactive GPS Map Placeholder]</div>`;
+        } else if (target === 'best') {
+            this.data.bests.forEach(b => {
+                container.innerHTML += `<div class="card"><h3>${b.feat}</h3><p style="font-size:1.5rem; font-weight:900; color:var(--primary)">${b.stat}</p><p>${b.loc}</p></div>`;
+            });
+        } else if (target === '19th') {
             this.data.drinks.forEach(d => {
-                container.innerHTML += `
-                    <div class="drink-card">
-                        <img src="${d.img}" class="drink-img" onerror="this.src='https://via.placeholder.com/400x200?text=Golf+Drink'">
-                        <div class="drink-details">
-                            <span class="kicker">MUST HAVE</span>
-                            <h3>${d.name}</h3>
-                            <p style="font-size:0.85rem">${d.desc}</p>
-                        </div>
-                    </div>`;
+                container.innerHTML += `<div class="card"><h3>${d.name}</h3><p>${d.desc}</p></div>`;
             });
-        } 
-        
-        else if (view === 'witb') {
-            this.data.witb.forEach(i => {
-                container.innerHTML += `
-                    <div class="course-card">
-                        <span class="kicker">EQUIPMENT SPEC</span>
-                        <h3>${i.club}</h3>
-                        <p style="font-weight:600;">${i.model}</p>
-                        <p style="font-size:0.8rem; color:gray;">${i.spec}</p>
-                    </div>`;
+        } else if (target === 'witb') {
+            this.data.witb.forEach(w => {
+                container.innerHTML += `<div class="card"><h3>${w.club}</h3><p>${w.model}</p><span>${w.note}</span></div>`;
             });
         }
     },
 
-    // 4. INITIALIZER
     init: function() {
-        // Safe check for elements
-        const q = document.getElementById('quote-text');
-        const h = document.getElementById('history-text');
-        const l = document.getElementById('history-link');
-
-        if (q) q.innerText = "The more I practice, the luckier I get.";
-        if (h) h.innerText = "May 11, 1911: Walter Hagen, the father of professional golf, makes his pro debut.";
-        if (l) l.href = "https://www.worldgolfhalloffame.org/walter-hagen";
-        
-        console.log("Architect Mode: Online.");
+        document.getElementById('quote-text').innerText = "The more I practice, the luckier I get.";
+        document.getElementById('history-text').innerText = "May 11, 1911: Walter Hagen makes his professional debut.";
+        console.log("Honest Yardage Pro initialized.");
     }
 };
 
-// Launch
 document.addEventListener('DOMContentLoaded', () => ui.init());
