@@ -1,20 +1,13 @@
 const ui = {
     data: {
         played: [
-            { name: "Torrey Pines", val: 200, cost: 220, loc: "La Jolla, CA" },
-            { name: "Bethpage Black", val: 300, cost: 150, loc: "Farmingdale, NY" },
-            { name: "Cog Hill", val: 160, cost: 155, loc: "Lemont, IL" },
-            { name: "Harbour Town", val: 380, cost: 450, loc: "Hilton Head, SC" },
-            { name: "Riverton Pointe", val: 105, cost: 110, loc: "Hardeeville, SC" }
+            { name: "Torrey Pines", val: 200, cost: 220, loc: "La Jolla, CA", lat: 32.905, lng: -117.244, img: "https://images.unsplash.com/photo-1581467655410-0c2bf55d9d6c?q=80&w=800" },
+            { name: "Cog Hill", val: 160, cost: 155, loc: "Lemont, IL", lat: 41.674, lng: -87.954, img: "https://images.unsplash.com/photo-1592919016381-f07bec536017?q=80&w=800" },
+            { name: "Harbour Town", val: 380, cost: 450, loc: "Hilton Head, SC", lat: 32.137, lng: -80.812, img: "https://images.unsplash.com/photo-1623190289197-3914e7a82ec6?q=80&w=800" }
         ],
         drinks: [
-            { name: "Transfusion", desc: "The Club Classic. Vodka, Ginger Ale, Grape Juice." },
-            { name: "Spiked Arnold Palmer", desc: "Tea, Lemonade, and a Birdie-juice kicker." }
-        ],
-        witb: [{ club: "Putter", model: "L.A.B. Mezz.1", note: "Cheat code." }],
-        bests: [
-            { feat: "Longest Drive", stat: "312 Yards", loc: "Riverton Pointe #14" },
-            { feat: "Lowest Round", stat: "78", loc: "Cog Hill" }
+            { name: "The Transfusion", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=800", desc: "The Club Original. Vodka, Ginger Ale, Grape Juice, Lime." },
+            { name: "Bloody Mary", img: "https://images.unsplash.com/photo-1541546339599-ecdb5ec540bc?q=80&w=800", desc: "Spicy back-nine recovery drink. Garnish is mandatory." }
         ]
     },
 
@@ -22,7 +15,6 @@ const ui = {
         const home = document.getElementById('home-view');
         const dynamic = document.getElementById('dynamic-view');
         
-        // Toggle Active Buttons
         document.querySelectorAll('.dock-btn').forEach(b => {
             b.classList.toggle('active', b.innerText.toLowerCase().includes(target));
         });
@@ -33,38 +25,54 @@ const ui = {
         } else {
             home.style.display = 'none';
             this.render(target, dynamic);
+            if (target === 'map') this.initMap();
         }
         window.scrollTo(0,0);
     },
 
+    initMap: function() {
+        // Creates the map centered on USA
+        const map = L.map('map-canvas').setView([37.8, -96], 4);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // Add pins for all played courses
+        this.data.played.forEach(c => {
+            L.marker([c.lat, c.lng]).addTo(map)
+                .bindPopup(`<b>${c.name}</b><br>${c.loc}`);
+        });
+    },
+
     render: function(target, container) {
-        container.innerHTML = `<h2 style="margin:20px; font-family:'Playfair Display'">${target.toUpperCase()}</h2>`;
+        container.innerHTML = `<h2 style="padding:20px;">${target.toUpperCase()}</h2>`;
         
-        if (target === 'played') {
+        if (target === 'map') {
+            container.innerHTML += `<div id="map-canvas"></div>`;
+        } else if (target === 'played') {
             this.data.played.forEach(c => {
-                container.innerHTML += `<div class="card"><h3>${c.name}</h3><p>${c.loc}</p><p>Value: $${c.val} | Cost: $${c.cost}</p></div>`;
-            });
-        } else if (target === 'map') {
-            container.innerHTML += `<div class="card" style="height:300px; background:#e2e8f0; display:flex; align-items:center; justify-content:center;">[Interactive GPS Map Placeholder]</div>`;
-        } else if (target === 'best') {
-            this.data.bests.forEach(b => {
-                container.innerHTML += `<div class="card"><h3>${b.feat}</h3><p style="font-size:1.5rem; font-weight:900; color:var(--primary)">${b.stat}</p><p>${b.loc}</p></div>`;
+                container.innerHTML += `
+                    <div class="card">
+                        <img src="${c.img}" class="card-img">
+                        <div class="card-body">
+                            <h3>${c.name}</h3>
+                            <p>${c.loc}</p>
+                            <p><b>Value: $${c.val}</b> | Paid: $${c.cost}</p>
+                        </div>
+                    </div>`;
             });
         } else if (target === '19th') {
             this.data.drinks.forEach(d => {
-                container.innerHTML += `<div class="card"><h3>${d.name}</h3><p>${d.desc}</p></div>`;
-            });
-        } else if (target === 'witb') {
-            this.data.witb.forEach(w => {
-                container.innerHTML += `<div class="card"><h3>${w.club}</h3><p>${w.model}</p><span>${w.note}</span></div>`;
+                container.innerHTML += `
+                    <div class="card">
+                        <img src="${d.img}" class="card-img">
+                        <div class="card-body"><h3>${d.name}</h3><p>${d.desc}</p></div>
+                    </div>`;
             });
         }
     },
 
     init: function() {
-        document.getElementById('quote-text').innerText = "The more I practice, the luckier I get.";
-        document.getElementById('history-text').innerText = "May 11, 1911: Walter Hagen makes his professional debut.";
-        console.log("Honest Yardage Pro initialized.");
+        document.getElementById('quote-text').innerText = "Golf is a game of misses. He who misses the best wins.";
+        document.getElementById('history-text').innerText = "May 11, 2026: The site is officially operational.";
     }
 };
 
