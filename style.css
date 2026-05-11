@@ -1,106 +1,48 @@
 :root {
     --pacific-blue: #005B96;
     --slate-gray: #708090;
-    --crisp-white: #F8F9FA;
-    --deep-slate: #2F4F4F;
-    --accent-blue: #B0C4DE;
+    --white: #FFFFFF;
+    --off-white: #F4F7F9;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--crisp-white);
-    color: var(--deep-slate);
-    line-height: 1.6;
+body { 
+    font-family: 'Inter', sans-serif; 
+    background: var(--off-white); 
+    padding-bottom: 70px; /* Space for fixed menu */
 }
 
-h1, h2 { font-family: 'Playfair Display', serif; }
-
-/* Hero Styling */
-.hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), 
-                url('images/hero-golf.jpeg') no-repeat center center/cover;
-    display: flex;
-    flex-direction: column;
+.mobile-header {
+    position: fixed; top: 0; width: 100%; height: 60px;
+    background: white; display: flex; align-items: center;
+    justify-content: center; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.hero-overlay { height: 100%; display: flex; flex-direction: column; }
+.logo { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--pacific-blue); letter-spacing: 1px; }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5rem 5%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+.hero-mobile {
+    height: 50vh; margin-top: 60px;
+    background: url('images/image.jpeg') no-repeat center center/cover;
 }
 
-.logo { color: white; font-weight: 700; letter-spacing: 1px; font-size: 1.5rem; }
-
-.nav-links { display: flex; list-style: none; gap: 2rem; }
-
-.nav-links a { 
-    color: white; 
-    text-decoration: none; 
-    font-size: 0.85rem; 
-    text-transform: uppercase;
-    font-weight: 600;
+/* Fixed Bottom Navigation */
+.mobile-nav {
+    position: fixed; bottom: 0; width: 100%; height: 65px;
+    background: var(--pacific-blue); display: flex;
+    justify-content: space-around; align-items: center; z-index: 1000;
 }
 
-.hero-content {
-    margin: auto;
-    text-align: center;
-    color: white;
-}
+.nav-item { color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-.hero-content h1 { font-size: clamp(3rem, 8vw, 5rem); margin-bottom: 0.5rem; }
+/* Ticker Card */
+.ticker-card { background: white; margin: 15px; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+.label { font-size: 0.65rem; font-weight: 800; color: var(--slate-gray); letter-spacing: 1px; }
+.btn-mini { display: inline-block; margin-top: 10px; font-size: 0.75rem; color: var(--pacific-blue); text-decoration: none; font-weight: bold; }
 
-/* Infinite Scroll Cards */
-.course-card {
-    max-width: 800px;
-    margin: 4rem auto;
-    background: white;
-    border-radius: 4px;
-    border-left: 6px solid var(--pacific-blue);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-    overflow: hidden;
-    animation: fadeInUp 0.6s ease-out;
-}
+/* Course Cards */
+.course-card { background: white; margin: 15px; padding: 20px; border-radius: 12px; border-left: 6px solid var(--pacific-blue); }
 
-.card-content { padding: 2.5rem; }
+.beer-list { margin-top: 15px; background: #f0f4f8; padding: 10px; border-radius: 8px; }
+.beer-item { font-size: 0.85rem; padding: 4px 0; border-bottom: 1px solid #dee2e6; }
+.beer-item:last-child { border: none; }
 
-.card-header { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: baseline;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-}
-
-.value-tag {
-    font-size: 0.75rem;
-    background: var(--slate-gray);
-    color: white;
-    padding: 4px 12px;
-    border-radius: 50px;
-}
-
-.stats-grid { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 1rem; 
-    margin: 1.5rem 0;
-    font-size: 0.9rem;
-}
-
-.stat-item { color: var(--pacific-blue); font-weight: 700; }
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 768px) {
-    .nav-links { display: none; } /* Mobile optimization */
-}
+.end-clubhouse { text-align: center; padding: 40px; color: var(--slate-gray); font-style: italic; }
