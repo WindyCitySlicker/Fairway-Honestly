@@ -2,52 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Honest Yardage | Real Reviews</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Honest Yardage</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-overlay">
-            <nav class="navbar">
-                <div class="logo">HONEST YARDAGE</div>
-                <ul class="nav-links">
-                    <li><a href="#recently-played">Recently Played</a></li>
-                    <li><a href="#19th-hole">19th Hole</a></li>
-                    <li><a href="#witb">WITB</a></li>
-                    <li><a href="#swing-thoughts">Swing Thoughts</a></li>
-                </ul>
-            </nav>
-            <div class="hero-content">
-                <h1>Honest Yardage</h1>
-                <p>Respect the game. Banter included.</p>
-            </div>
-        </div>
+    <header class="mobile-header">
+        <div class="logo">HONEST YARDAGE</div>
     </header>
 
-    <div id="swing-thoughts" class="ticker-section">
-        <div class="ticker-container">
-            <div class="ticker-block">
-                <span class="label">SWING THOUGHT:</span>
-                <span id="daily-quote">"Loading..."</span>
-            </div>
-            <div class="ticker-block">
-                <span class="label">ON THIS DAY:</span>
-                <span id="golf-history">"Fetching history..."</span>
-            </div>
-        </div>
-    </div>
+    <main id="main-content">
+        <section class="hero-mobile"></section>
 
-    <main id="main-feed">
-        <section id="recently-played" class="section-header">
-            <h2>Recently Played</h2>
-            <p>The latest tracks, mapped and measured.</p>
+        <section id="swing-thoughts" class="ticker-section">
+            <div class="ticker-card">
+                <span class="label">DAILY SWING THOUGHT</span>
+                <p id="daily-quote">"Loading..."</p>
+                <hr>
+                <span class="label">ON THIS DAY IN GOLF</span>
+                <p id="golf-history">"Loading..."</p>
+                <a id="history-link" href="#" target="_blank" class="btn-mini">Read the History &rarr;</a>
+            </div>
         </section>
-        
+
         <div id="feed-container"></div>
+        
+        <div id="end-message" style="display:none;" class="end-clubhouse">
+            <p>⛳️ You've reached the clubhouse. Time for a transfusion.</p>
+        </div>
     </main>
+
+    <nav class="mobile-nav">
+        <a href="#hero-mobile" class="nav-item">Home</a>
+        <a href="#recently-played" class="nav-item">Recent</a>
+        <a href="#19th-hole" class="nav-item">19th Hole</a>
+        <a href="#witb" class="nav-item">WITB</a>
+    </nav>
 
     <script src="script.js"></script>
 </body>
