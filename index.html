@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Honest Yardage | Pro Edition</title>
+    <title>Honest Yardage | Architect v3</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,14 +18,13 @@
     <main id="app-viewport">
         <section id="home-view" class="view active">
             <div class="hero-container">
-                <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1596404313271-9df6084e8574?q=80&w=1200');"></div>
+                <div class="hero-image"></div>
                 <div class="ticker-card glass">
                     <span class="kicker">SWING THOUGHT</span>
                     <p id="quote-text">Loading...</p>
                     <hr>
                     <span class="kicker">ON THIS DAY</span>
                     <p id="history-text">Loading...</p>
-                    <a id="history-link" href="#" target="_blank">Full Report &rarr;</a>
                 </div>
             </div>
         </section>
