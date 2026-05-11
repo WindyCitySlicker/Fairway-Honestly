@@ -62,4 +62,36 @@ body {
 }
 
 .kicker { font-size: 0.6rem; font-weight: 900; color: var(--primary); display: block; margin-bottom: 5px; }
-.main-text { font-size: 1.1rem; line-height: 1.5; font-weight: 600; margin-bottom: 10px; }
+.main-text { font-size: 1.1rem; line-height: 1.5; font-weight: 600; margin-bottom: 10px; 
+    
+    
+    /* Update your CSS with these refined classes */
+.hero-image {
+    height: 45vh; margin-top: 60px;
+    background: url('images/image.jpeg') no-repeat center center;
+    background-size: cover; /* Ensures the image fills the area */
+    position: relative;
+    border-bottom: 4px solid var(--primary);
+}
+
+/* 19th Hole Drink Cards */
+.drink-card {
+    background: white; border-radius: 15px; overflow: hidden;
+    margin-bottom: 20px; box-shadow: var(--shadow);
+}
+.drink-img { width: 100%; height: 180px; object-fit: cover; }
+.drink-details { padding: 15px; }
+
+/* Map View Styling */
+.map-container {
+    height: 150px; background: #e0e7ff; border-radius: 12px;
+    margin-bottom: 15px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+.map-dot {
+    position: absolute; width: 12px; height: 12px;
+    background: var(--primary); border-radius: 50%;
+    border: 2px solid white; box-shadow: 0 0 10px var(--primary);
+}
+
+}
