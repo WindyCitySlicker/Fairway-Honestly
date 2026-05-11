@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Honest Yardage | Signature Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <title>Honest Yardage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -13,31 +13,28 @@
 
     <header class="app-header">
         <h1 class="logo">HONEST YARDAGE</h1>
-        <div class="status-indicator">TURBO SIGNATURE</div>
     </header>
 
     <main id="app-viewport">
         <section id="home-view" class="view active">
-            <div class="hero-container">
-                <div class="hero-img-box"></div>
-                <div class="ticker-card glass">
-                    <span class="kicker">SWING THOUGHT</span>
-                    <p id="quote-text">...</p>
-                    <hr>
-                    <span class="kicker">LAB METRIC</span>
-                    <p id="lab-preview">1RM: 215lbs | Soccer: Game Tonight</p>
-                </div>
+            <div class="hero-image"></div>
+            <div class="ticker-card glass">
+                <span class="kicker">SWING THOUGHT</span>
+                <p id="quote-text">"Loading..."</p>
+                <hr>
+                <span class="kicker">HISTORY</span>
+                <p id="history-text">"Loading..."</p>
             </div>
         </section>
-        <div id="dynamic-view" class="view"></div>
+
+        <div id="dynamic-view" class="view"></section>
     </main>
 
     <nav class="app-dock">
         <button class="dock-btn active" onclick="ui.navigate('home')">Home</button>
         <button class="dock-btn" onclick="ui.navigate('played')">Played</button>
-        <button class="dock-btn" onclick="ui.navigate('lab')">The Lab</button>
-        <button class="dock-btn" onclick="ui.navigate('19th')">19th</button>
-        <button class="dock-btn" onclick="ui.navigate('journal')">Journal</button>
+        <button class="dock-btn" onclick="ui.navigate('map')">Map</button>
+        <button class="dock-btn" onclick="ui.navigate('19th')">19th Hole</button>
         <button class="dock-btn" onclick="ui.navigate('witb')">WITB</button>
     </nav>
 
