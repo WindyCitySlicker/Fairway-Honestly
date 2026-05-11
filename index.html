@@ -2,41 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Honest Yardage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Honest Yardage | Architect Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="mobile-header">
-        <div class="logo">HONEST YARDAGE</div>
+    <header class="glass-header">
+        <div class="logo-container">
+            <span class="logo-text">HONEST YARDAGE</span>
+        </div>
     </header>
 
-    <main id="main-content">
-        <section id="hero-section" class="hero-mobile"></section>
+    <main id="app-container">
+        <section id="home-view" class="view">
+            <div class="hero-image"></div>
+            <div class="glass-card ticker">
+                <span class="kicker">SWING THOUGHT</span>
+                <p id="quote-text" class="main-text"></p>
+                <div class="divider"></div>
+                <span class="kicker">ON THIS DAY</span>
+                <p id="history-text" class="sub-text"></p>
+                <a id="history-link" href="#" target="_blank" class="text-link">Full Report &rarr;</a>
+            </div>
+        </section>
 
-        <div id="dynamic-view">
-            <section id="home-view" class="content-view">
-                <div class="ticker-card">
-                    <span class="label">DAILY SWING THOUGHT</span>
-                    <p id="daily-quote">"Loading..."</p>
-                    <hr>
-                    <span class="label">ON THIS DAY IN GOLF</span>
-                    <p id="golf-history">"Loading..."</p>
-                    <a id="history-link" href="#" target="_blank" class="btn-mini">Read History &rarr;</a>
-                </div>
-            </section>
-
-            <div id="feed-container"></div>
-        </div>
+        <div id="dynamic-content" class="view"></div>
     </main>
 
-    <nav class="mobile-nav">
-        <button class="nav-item active" onclick="app.showPage('home')">Home</button>
-        <button class="nav-item" onclick="app.showPage('reviews')">Reviews</button>
-        <button class="nav-item" onclick="app.showPage('19th')">19th Hole</button>
-        <button class="nav-item" onclick="app.showPage('witb')">WITB</button>
+    <nav class="dock">
+        <button class="dock-item active" onclick="ui.navigate('home')">Home</button>
+        <button class="dock-item" onclick="ui.navigate('reviews')">Reviews</button>
+        <button class="dock-item" onclick="ui.navigate('19th')">19th Hole</button>
+        <button class="dock-item" onclick="ui.navigate('witb')">WITB</button>
     </nav>
 
     <script src="script.js"></script>
