@@ -1,97 +1,50 @@
 :root {
     --primary: #005B96;
-    --slate: #1A202C;
-    --text: #2D3748;
-    --glass: rgba(255, 255, 255, 0.85);
-    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    --slate: #0F172A;
+    --glass: rgba(255, 255, 255, 0.9);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: #1E293B; }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    background: #F7FAFC; 
-    color: var(--text);
-    overflow-x: hidden;
-}
+/* FIX: Ensure content starts below the header */
+#app-viewport { padding-top: 80px; padding-bottom: 100px; }
 
-/* Glassmorphism Logic */
-.glass-card {
-    background: var(--glass);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: var(--shadow);
-}
-
-/* Header & Navigation */
-.glass-header {
+.app-header {
     position: fixed; top: 0; width: 100%; height: 70px;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex; align-items: center; justify-content: center; z-index: 1000;
+    background: white; display: flex; align-items: center;
+    justify-content: center; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.logo-text { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.4rem; color: var(--primary); letter-spacing: 2px; }
+.logo { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 1.3rem; letter-spacing: 1px; }
 
-.dock {
-    position: fixed; bottom: 20px; left: 5%; width: 90%; height: 65px;
-    background: var(--slate); border-radius: 50px;
-    display: flex; justify-content: space-around; align-items: center; z-index: 1000;
+/* FIX: Hero Image Visibility */
+.hero-image {
+    width: 100%; height: 250px;
+    background-size: cover; background-position: center;
+    border-radius: 0 0 30px 30px;
 }
 
-.dock-item {
-    background: none; border: none; color: white; font-weight: 700; font-size: 0.7rem;
-    text-transform: uppercase; opacity: 0.5; transition: 0.3s;
-}
-
-.dock-item.active { opacity: 1; color: #63B3ED; transform: translateY(-5px); }
-
-/* Review Cards & Animations */
-.course-card {
-    background: white; margin: 20px; padding: 25px; border-radius: 20px;
-    animation: slideUp 0.5s ease forwards;
-}
-
-.value-meter-bg { background: #EDF2F7; height: 10px; border-radius: 5px; margin: 15px 0; overflow: hidden; }
-.value-meter-fill { background: var(--primary); height: 100%; transition: width 1s ease-in-out; }
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+.ticker-card {
+    background: var(--glass); margin: -40px 20px 20px;
+    padding: 20px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px); position: relative; z-index: 10;
 }
 
 .kicker { font-size: 0.6rem; font-weight: 900; color: var(--primary); display: block; margin-bottom: 5px; }
-.main-text { font-size: 1.1rem; line-height: 1.5; font-weight: 600; margin-bottom: 10px; 
-    
-    
-    /* Update your CSS with these refined classes */
-.hero-image {
-    height: 45vh; margin-top: 60px;
-    background: url('images/image.jpeg') no-repeat center center;
-    background-size: cover; /* Ensures the image fills the area */
-    position: relative;
-    border-bottom: 4px solid var(--primary);
+#quote-text { font-size: 1.1rem; font-weight: 600; font-style: italic; }
+
+/* DOCK: Responsive for 6 buttons */
+.app-dock {
+    position: fixed; bottom: 15px; left: 3%; width: 94%; height: 65px;
+    background: var(--slate); border-radius: 20px;
+    display: flex; justify-content: space-around; align-items: center; z-index: 2000;
 }
 
-/* 19th Hole Drink Cards */
-.drink-card {
-    background: white; border-radius: 15px; overflow: hidden;
-    margin-bottom: 20px; box-shadow: var(--shadow);
+.dock-btn {
+    background: none; border: none; color: white; font-size: 0.6rem;
+    font-weight: 700; text-transform: uppercase; opacity: 0.5;
 }
-.drink-img { width: 100%; height: 180px; object-fit: cover; }
-.drink-details { padding: 15px; }
+.dock-btn.active { opacity: 1; color: #38BDF8; }
 
-/* Map View Styling */
-.map-container {
-    height: 150px; background: #e0e7ff; border-radius: 12px;
-    margin-bottom: 15px; position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-}
-.map-dot {
-    position: absolute; width: 12px; height: 12px;
-    background: var(--primary); border-radius: 50%;
-    border: 2px solid white; box-shadow: 0 0 10px var(--primary);
-}
-
-}
+.card { background: white; margin: 15px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
