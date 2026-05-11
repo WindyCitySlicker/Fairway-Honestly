@@ -2,45 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Honest Yardage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honest Yardage | The Truth on the Turf</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-    <header class="mobile-header">
-        <div class="logo">HONEST YARDAGE</div>
+    <header class="app-header">
+        <h1 class="logo">HONEST YARDAGE</h1>
     </header>
 
-    <main id="main-content">
-        <section class="hero-mobile"></section>
-
-        <section id="swing-thoughts" class="ticker-section">
-            <div class="ticker-card">
-                <span class="label">DAILY SWING THOUGHT</span>
-                <p id="daily-quote">"Loading..."</p>
-                <hr>
-                <span class="label">ON THIS DAY IN GOLF</span>
-                <p id="golf-history">"Loading..."</p>
-                <a id="history-link" href="#" target="_blank" class="btn-mini">Read the History &rarr;</a>
+    <main id="app-view">
+        <section id="home" class="view active">
+            <div class="hero-image" style="background-image: url('images/image.jpeg');"></div>
+            <div class="daily-card">
+                <span class="badge">SWING THOUGHT</span>
+                <p id="quote-display"></p>
+                <button class="btn-history" id="history-trigger">On This Day in Golf &rarr;</button>
             </div>
         </section>
 
-        <div id="feed-container"></div>
-        
-        <div id="end-message" style="display:none;" class="end-clubhouse">
-            <p>⛳️ You've reached the clubhouse. Time for a transfusion.</p>
-        </div>
+        <section id="reviews" class="view">
+            <h2>Recently Played</h2>
+            <div id="course-feed"></div>
+            <button id="load-more" class="btn-secondary">Load More Courses</button>
+        </section>
+
+        <section id="clubhouse" class="view">
+            <h2>The 19th Hole</h2>
+            <div id="beer-ranking"></div>
+        </section>
     </main>
 
-    <nav class="mobile-nav">
-        <a href="#hero-mobile" class="nav-item">Home</a>
-        <a href="#recently-played" class="nav-item">Recent</a>
-        <a href="#19th-hole" class="nav-item">19th Hole</a>
-        <a href="#witb" class="nav-item">WITB</a>
+    <nav class="bottom-nav" role="tablist">
+        <button class="nav-btn active" data-target="home" aria-selected="true">Home</button>
+        <button class="nav-btn" data-target="reviews" aria-selected="false">Reviews</button>
+        <button class="nav-btn" data-target="clubhouse" aria-selected="false">19th Hole</button>
     </nav>
 
-    <script src="script.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
