@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honest Yardage | Real Reviews</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-overlay">
+            <nav class="navbar">
+                <div class="logo">HONEST YARDAGE</div>
+                <ul class="nav-links">
+                    <li><a href="#recently-played">Recently Played</a></li>
+                    <li><a href="#19th-hole">19th Hole</a></li>
+                    <li><a href="#witb">WITB</a></li>
+                    <li><a href="#swing-thoughts">Swing Thoughts</a></li>
+                </ul>
+            </nav>
+            <div class="hero-content">
+                <h1>Honest Yardage</h1>
+                <p>Respect the game. Banter included.</p>
+            </div>
+        </div>
+    </header>
+
+    <div id="swing-thoughts" class="ticker-section">
+        <div class="ticker-container">
+            <div class="ticker-block">
+                <span class="label">SWING THOUGHT:</span>
+                <span id="daily-quote">"Loading..."</span>
+            </div>
+            <div class="ticker-block">
+                <span class="label">ON THIS DAY:</span>
+                <span id="golf-history">"Fetching history..."</span>
+            </div>
+        </div>
+    </div>
+
+    <main id="main-feed">
+        <section id="recently-played" class="section-header">
+            <h2>Recently Played</h2>
+            <p>The latest tracks, mapped and measured.</p>
+        </section>
+        
+        <div id="feed-container"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
