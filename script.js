@@ -1,65 +1,67 @@
-const dailyData = {
-    quote: "Golf is a game in which you yell 'fore,' shoot six, and write down five.",
-    author: "Paul Harvey",
-    history: "May 11, 1911: Eleven-time major winner Walter Hagen makes his professional debut.",
-    link: "https://www.worldgolfhalloffame.org/walter-hagen"
+const ui = {
+    state: {
+        current: 'home',
+        data: {
+            reviews: [
+                { name: "Torrey Pines", price: 220, value: 140, sg: "+2.4", speed: "11.5", staff: "🙂" },
+                { name: "Riverton Pointe", price: 110, value: 95, sg: "-1.1", speed: "10.0", staff: "😁" }
+            ],
+            witb: [
+                { cat: "Woods", model: "Stealth 2 Plus", detail: "9.0° Graphite Design" },
+                { cat: "Flatstick", model: "L.A.B. Mezz.1", detail: "The Cheat Code" }
+            ],
+            beers: ["Founders All Day IPA", "Kona Big Wave", "Sierra Nevada Pale Ale", "Michelob Ultra", "Coors Banquet"]
+        }
+    },
+
+    navigate: function(view) {
+        this.state.current = view;
+        const content = document.getElementById('dynamic-content');
+        const home = document.getElementById('home-view');
+        
+        // Navigation visual update
+        document.querySelectorAll('.dock-item').forEach(btn => {
+            btn.classList.toggle('active', btn.innerText.toLowerCase().includes(view));
+        });
+
+        if(view === 'home') {
+            home.style.display = 'block';
+            content.innerHTML = '';
+        } else {
+            home.style.display = 'none';
+            this.render(view, content);
+        }
+    },
+
+    render: function(view, container) {
+        container.innerHTML = '';
+        if(view === 'reviews') {
+            this.state.data.reviews.forEach(c => {
+                const valPercent = (c.value / c.price) * 100;
+                container.innerHTML += `
+                    <div class="course-card">
+                        <span class="kicker">COURSE REVIEW</span>
+                        <h2>${c.name}</h2>
+                        <p>Strokes Gained Difficulty: <strong>${c.sg}</strong></p>
+                        <div class="value-meter-bg"><div class="value-meter-fill" style="width:${valPercent}%"></div></div>
+                        <p style="font-size:0.8rem">Actual Cost: $${c.price} | <span style="color:var(--primary)">Honest Value: $${c.value}</span></p>
+                    </div>`;
+            });
+        } else if(view === '19th') {
+            container.innerHTML = `<div class="course-card"><h2>The Fairway & Flask</h2><p>Top Clubhouse Picks:</p>` + 
+                this.state.data.beers.map(b => `<div class="beer-badge" style="background:#f0f4f8; padding:10px; margin-top:5px; border-radius:10px; font-weight:600;">${b}</div>`).join('') + `</div>`;
+        } else if(view === 'witb') {
+            this.state.data.witb.forEach(item => {
+                container.innerHTML += `<div class="course-card"><span class="kicker">${item.cat}</span><h3>${item.model}</h3><p>${item.detail}</p></div>`;
+            });
+        }
+    },
+
+    init: function() {
+        document.getElementById('quote-text').innerText = "The more I practice, the luckier I get.";
+        document.getElementById('history-text').innerText = "May 11, 1911: Walter Hagen makes his professional debut.";
+        document.getElementById('history-link').href = "https://www.worldgolfhalloffame.org/walter-hagen";
+    }
 };
 
-const courses = [
-    { name: "Torrey Pines (North)", value: 140, cost: 220, speed: "11.5", walk: "9/10", staff: "🙂" },
-    { name: "Riverton Pointe", value: 95, cost: 110, speed: "10.0", walk: "7/10", staff: "😐" },
-    { name: "Harbour Town", value: 350, cost: 450, speed: "12.0", walk: "10/10", staff: "🙂" },
-    { name: "Cog Hill (Dubsdread)", value: 155, cost: 155, speed: "11.0", walk: "6/10", staff: "😐" },
-    { name: "Bethpage Black", value: 130, cost: 150, speed: "12.5", walk: "1/10", staff: "🙁" }
-];
-
-const topBeers = [
-    "1. Founders All Day IPA (The Gold Standard)",
-    "2. Kona Big Wave Golden Ale (Easy Drinking)",
-    "3. Sierra Nevada Pale Ale (The Classic)",
-    "4. Michelob Ultra (The Athlete's Choice)",
-    "5. Coors Banquet (The Heritage Pick)"
-];
-
-let coursesLoaded = 0;
-const maxCourses = courses.length;
-
-function createCard(course) {
-    const card = document.createElement('div');
-    card.className = 'course-card';
-    card.innerHTML = `
-        <h3>${course.name}</h3>
-        <p style="font-size: 0.8rem; color: gray;">Cost: $${course.cost} | Honest Value: $${course.value}</p>
-        <div class="beer-list">
-            <p><strong>Top 5 Clubhouse Beers:</strong></p>
-            ${topBeers.map(beer => `<div class="beer-item">${beer}</div>`).join('')}
-        </div>
-    `;
-    return card;
-}
-
-// Initialize Page
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('daily-quote').innerHTML = `"${dailyData.quote}" — <em>${dailyData.author}</em>`;
-    document.getElementById('golf-history').innerText = dailyData.history;
-    document.getElementById('history-link').href = dailyData.link;
-    
-    loadMore();
-});
-
-function loadMore() {
-    const container = document.getElementById('feed-container');
-    if (coursesLoaded < maxCourses) {
-        container.appendChild(createCard(courses[coursesLoaded]));
-        coursesLoaded++;
-    } else {
-        document.getElementById('end-message').style.display = 'block';
-    }
-}
-
-// Scroll detection
-window.onscroll = function() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
-        loadMore();
-    }
-};
+document.addEventListener('DOMContentLoaded', () => ui.init());
