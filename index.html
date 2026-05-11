@@ -3,39 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Honest Yardage | Architect Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <title>Honest Yardage | Pro Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="glass-header">
-        <div class="logo-container">
-            <span class="logo-text">HONEST YARDAGE</span>
-        </div>
+    <header class="app-header">
+        <h1 class="logo">HONEST YARDAGE</h1>
     </header>
 
-    <main id="app-container">
-        <section id="home-view" class="view">
-            <div class="hero-image"></div>
-            <div class="glass-card ticker">
-                <span class="kicker">SWING THOUGHT</span>
-                <p id="quote-text" class="main-text"></p>
-                <div class="divider"></div>
-                <span class="kicker">ON THIS DAY</span>
-                <p id="history-text" class="sub-text"></p>
-                <a id="history-link" href="#" target="_blank" class="text-link">Full Report &rarr;</a>
+    <main id="app-viewport">
+        <section id="home-view" class="view active">
+            <div class="hero-container">
+                <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1596404313271-9df6084e8574?q=80&w=1200');"></div>
+                <div class="ticker-card glass">
+                    <span class="kicker">SWING THOUGHT</span>
+                    <p id="quote-text">Loading...</p>
+                    <hr>
+                    <span class="kicker">ON THIS DAY</span>
+                    <p id="history-text">Loading...</p>
+                    <a id="history-link" href="#" target="_blank">Full Report &rarr;</a>
+                </div>
             </div>
         </section>
 
-        <div id="dynamic-content" class="view"></div>
+        <div id="dynamic-view" class="view"></div>
     </main>
 
-    <nav class="dock">
-        <button class="dock-item active" onclick="ui.navigate('home')">Home</button>
-        <button class="dock-item" onclick="ui.navigate('reviews')">Reviews</button>
-        <button class="dock-item" onclick="ui.navigate('19th')">19th Hole</button>
-        <button class="dock-item" onclick="ui.navigate('witb')">WITB</button>
+    <nav class="app-dock">
+        <button class="dock-btn active" onclick="ui.navigate('home')">Home</button>
+        <button class="dock-btn" onclick="ui.navigate('played')">Played</button>
+        <button class="dock-btn" onclick="ui.navigate('map')">Map</button>
+        <button class="dock-btn" onclick="ui.navigate('19th')">19th</button>
+        <button class="dock-btn" onclick="ui.navigate('best')">Bests</button>
+        <button class="dock-btn" onclick="ui.navigate('witb')">WITB</button>
     </nav>
 
     <script src="script.js"></script>
